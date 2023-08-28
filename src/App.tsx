@@ -57,6 +57,12 @@ function App() {
     }
   };
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      handleAddTodo();
+    }
+  };
+
   const handleCompleteTodo = (e: any, todo: any) => {
     setIsCompleted(e.target.checked);
     let updatedTodos = todoList.map((data: any) => {
@@ -69,7 +75,6 @@ function App() {
       return data;
     });
     console.log(updatedTodos);
-
     setTodoList(updatedTodos);
     localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
@@ -126,7 +131,9 @@ function App() {
               name="todo"
               value={todo}
               onChange={(e: any) => setTodo(e.target.value)}
+              placeholder="✍️ . . . "
               className="rounded-md focus-visible:outline-none bg-[#0000001f] w-full px-4 text-black font-normal h-[80px] text-[24px]"
+              onKeyPress={handleKeyPress}
             />
 
             <div
