@@ -7,12 +7,11 @@ const List = ({
   handleEditTodo,
   handleDeleteTodo,
   handleCompleteTodo,
-  isCompleted,
 }: any) => {
   return (
     <div
       className={`${
-        isCompleted === true ? "line-through opacity-[0.5]" : ""
+        todoItem.completed ? "line-through opacity-[0.5]" : ""
       } my-1 bg-white min-h-[60px] w-full rounded-md flex justify-between items-center px-3 Todo-List h-auto py-4`}
     >
       <div className="flex gap-2 items-start">
@@ -23,7 +22,7 @@ const List = ({
         />
         <p
           className={`text-gray-600 w-full text-lg font-sans font-bold mb-0 pe-4 text-justify ${
-            isCompleted === true ? "line-through" : ""
+            todoItem.completed  ? "line-through" : ""
           }`}
         >
           {todoItem.todo}
@@ -31,7 +30,7 @@ const List = ({
       </div>
 
       <div className="flex gap-2 min-w-[130px]">
-        <p className={`mb-0 ${isCompleted ? "line-through" : ""}`}>
+        <p className={`mb-0 ${todoItem.completed  ? "line-through" : ""}`}>
           {todoItem.time}
         </p>
         <AiFillEdit
