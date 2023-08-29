@@ -15,7 +15,7 @@ function App() {
   const [modalShow, setModalShow] = React.useState(false);
   const [todoList, setTodoList] = useState<any>([]);
   const [editTodoId, setEditTodoId] = useState<any>("");
-  const [isCompleted, setIsCompleted] = useState(false);
+
 
   // UNIQUE ID GENERATOR
   const uniqueId = () => {
@@ -44,7 +44,7 @@ function App() {
         id: uniqueId(),
         time: currentTime(),
         todo: todo,
-        completed: isCompleted,
+        completed: false,
       };
       setTodoList((prev: any) => [...prev, newTodo]);
 
@@ -64,12 +64,11 @@ function App() {
   };
 
   const handleCompleteTodo = (e: any, todo: any) => {
-    setIsCompleted(e.target.checked);
     let updatedTodos = todoList.map((data: any) => {
       if (data.id === todo.id) {
         return {
           ...todo,
-          completed: isCompleted,
+          completed: e.target.checked ? true: false,
         };
       }
       return data;
@@ -153,7 +152,6 @@ function App() {
                   handleEditTodo={handleEditTodo}
                   handleDeleteTodo={handleDeleteTodo}
                   handleCompleteTodo={handleCompleteTodo}
-                  isCompleted={isCompleted}
                 />
               ))}
           </div>
